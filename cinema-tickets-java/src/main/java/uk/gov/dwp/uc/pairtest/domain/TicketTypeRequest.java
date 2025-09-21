@@ -6,10 +6,16 @@ package uk.gov.dwp.uc.pairtest.domain;
 
 public class TicketTypeRequest {
 
-    private int noOfTickets;
-    private Type type;
+    private final int noOfTickets;
+    private final Type type;
 
     public TicketTypeRequest(Type type, int noOfTickets) {
+        if (type == null) {
+            throw new NullPointerException("type");
+        }
+        if (noOfTickets <= 0) {
+            throw new IllegalArgumentException("noOfTickets must be positive");
+        }
         this.type = type;
         this.noOfTickets = noOfTickets;
     }
